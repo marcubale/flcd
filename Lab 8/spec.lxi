@@ -1,0 +1,37 @@
+%{
+#include <math.h>
+%}
+
+NUMAR 		[1-9]+[0-9]*
+VARIABILA		[a-z][a-z0-9]*
+AF          [01]
+
+%%
+
+{NUMAR}+ 	printf( "An integer: %s (%d)\n", yytext, atoi( yytext ) );
+
+{AF}+       printf( "A boolean: %s (%d)\n", yytext, atoi( yytext ) );
+
+"daca" |"daca_nu" |"merge" |"de_la" |"la" |"cu" |"sau" |"printeaza" |"citeste"  printf( "A keyword: %s\n", yytext );
+
+{VAR} 		printf( "An identifier: %s\n", yytext );
+
+"+"|"-"|"*"|"/"|"="|"%" printf( "An operator: %s\n", yytext );
+
+"{"[^}\n]*"}" 		/* eat up one-line comments */
+
+[ \t\n]+ 		/* eat up whitespace */
+
+. printf("Eroare\n");
+%%
+main( argc, argv )
+int argc;
+char **argv;
+{
+    ++argv, --argc; /* skip over program name */
+    if ( argc > 0 )
+    yyin = fopen( argv[0], "r" );
+    else
+     yyin = stdin;
+    yylex();
+}
