@@ -1,0 +1,5 @@
+A B
+a b e
+A
+A -> ABd | Aa | a
+B -> Be | b

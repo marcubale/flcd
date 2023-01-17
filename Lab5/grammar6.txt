@@ -1,0 +1,6 @@
+E T A B
+a
+E
+E -> EAT | T
+T -> TBF | F
+F -> a

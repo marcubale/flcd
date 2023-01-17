@@ -1,0 +1,7 @@
+S A B C
+a b g h
+S
+S -> A | B | C
+A -> Aa | b
+B -> g | e
+C -> h | e
